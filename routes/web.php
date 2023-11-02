@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NewsCategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,26 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::controller(NewsCategoryController::class)
+    ->prefix('news-category')
+    ->name('news-category.')
+    ->group(
+        function () {
+            Route::get('index', 'index')
+                ->name('index');
+
+            Route::get('create', 'index')
+                ->name('create');
+
+            Route::get('update', 'index')
+                ->name('update');
+
+            Route::get('view', 'index')
+                ->name('view');
+
+            Route::get('delete', 'index')
+                ->name('delete');
+
+        }
+    );
